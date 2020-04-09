@@ -1,0 +1,5 @@
+devtools::load_all()
+get_subjects_responses("Datas/s01/1_2014_05_29__09_48_00.csv", session_number = "s01")
+read_session(pathdir = "Datas/s01/")
+read_session(pathdir = "Datas/190219 copy/")
+compile_experiment(pathdir = "./Datas/")
