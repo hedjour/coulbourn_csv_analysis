@@ -21,19 +21,5 @@ get_subjects_responses = function(path_file, session_number){
   names(dataframe) <- stringr::str_to_lower(names(dataframe))
   orgacol <-  c(tail(names(dataframe),3), head(names(dataframe), length(names(dataframe)) - 3) )
   dataframe <- dataframe[, ..orgacol]
-
-
-  #TODO ajouter l'appel à la fonction de modification des States à partir du fichier de trad
-
   return(dataframe)
-  #### Old code ####
-  #setnames(dataframe,3,'CorrectPort')
-  # dataframe = subset(dataframe, Protocol != 11 & ((CorrectPort > 1 & CorrectPort < 8) | (CorrectPort > 13 & CorrectPort < 19)))
-  # dataframe = melt(dataframe, c(1,2,3),variable.name = 'ResponsePort', value.name = 'NumResponses')
-
-  #### On regroupe les réponses en un dataframe ####
-  # data = aggregate(NumResponses ~ Protocol + Subject + CorrectPort + ResponsePort + CorrectResponse, data = data, FUN = sum)
-  # data = arrange(data,Protocol,Subject,CorrectResponse,CorrectPort,ResponsePort)
-  #### On ajoute la date à partir du nom du fichier aux données ####
-  # data$Date = as.Date(substr(file,1,6),'%m%d%y')
 }
