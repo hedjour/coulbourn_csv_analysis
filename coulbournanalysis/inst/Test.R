@@ -5,8 +5,14 @@ read_session(pathdir = "Datas/190219 copy/")
 donnees <- compile_experiment(pathdir = "./Datas/")
 names_state(donnees, "./Datas/names.csv", "current state")
 write.csv2(x = donnees, file = "Test.csv", na = "")
+write.csv2(x = head(donnees,1000), file = "Test.csv", na = "")
 
 #TODO ajouter l'appel à la fonction de modification des States à partir du fichier de trad
+
+donnees$delay = purrr::map_dbl(donnees$`transition state`, define_loop)
+
+
+
 #### Old code ####
 #setnames(dataframe,3,'CorrectPort')
 # dataframe = subset(dataframe, Protocol != 11 & ((CorrectPort > 1 & CorrectPort < 8) | (CorrectPort > 13 & CorrectPort < 19)))
