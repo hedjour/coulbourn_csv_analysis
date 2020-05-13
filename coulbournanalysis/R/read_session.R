@@ -10,6 +10,7 @@
 #' read_session(toto/)
 #'
 read_session <- function(pathdir){
+  if (!dir.exists(pathdir)) {stop(paste("Verify this directory is inexistant :", pathdir))}
   listefile <- stringr::str_subset(dir(path = pathdir), ".*csv")
   sessionNum <- tail( unlist(stringr::str_split(pathdir, "/")),1)
   dfoutput <- NULL
