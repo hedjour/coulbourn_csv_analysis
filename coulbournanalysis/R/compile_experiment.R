@@ -7,17 +7,12 @@
 #'
 #' @examples
 #'
-compile_experiment <- function(pathdir){
+compile_experiment <- function(pathdir, filter = "all"){
+  if (!dir.exists(pathdir)) {stop(paste("Verify this directory is inexistant :", pathdir))}
   listesession <- list.dirs(path = pathdir, recursive = FALSE)
-  output <- NULL
-  # dfoutput <- sapply(listesession, FUN = function(x){
-  #   dfi <- read_session(x)
-  #   dfoutput <- dplyr::bind_rows(dfoutput, dfi)
-  # })
-  for (i in listesession) {
-    print(i)
-    dfi <- read_session(i)
-    output <- dplyr::bind_rows(output, dfi)
+  #On ajoute la possibiliter de filtrer la liste des sessions pour ne pas tout garder
+  if (filter != "all") {
+    listesession <- listesession[stringr::str_which(listesession, filter)]
   }
-  return(output)
+  return(purrr::map_df(list.dirs(path = pathdir, recursive = FALSE), read_session))
 }
