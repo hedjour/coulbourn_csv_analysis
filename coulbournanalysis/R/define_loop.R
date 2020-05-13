@@ -13,8 +13,8 @@ define_loop <- function(val){
           factors = factors + 1
         }
       }else {
-        if (val <= 6 * factors) {
-          reponse = (factors - 1) * 5
+        if (val <= 5 + 6 * factors) {
+          reponse = factors * 5
           flag = FALSE
         }else{
           factors = factors + 1
